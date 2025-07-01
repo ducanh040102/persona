@@ -20,6 +20,10 @@ public class SkillData : ScriptableObject
     
     [Header("Effects")]
     [SerializeField] private List<StatusEffect> additionalEffects;
+    
+    public float Power => power;
+    
+    public ElementType Element => element;
 
     [System.Serializable]
     public struct StatusEffect

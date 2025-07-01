@@ -29,6 +29,13 @@ public class EnemyData : ScriptableObject
     [Header("Shadow Specific")]
     [SerializeField] private bool canBeRecruited;
     [SerializeField] private string[] recruitDialogue;
+    
+    public string EnemyName => enemyName;
+    public BaseStats Stats => baseStats;
+    public PersonaData Persona => persona;
+    public List<SkillData> AdditionalSkills => additionalSkills;
+    public BattleRewards Rewards => rewards;
+
 
     [System.Serializable]
     public struct BattleRewards
