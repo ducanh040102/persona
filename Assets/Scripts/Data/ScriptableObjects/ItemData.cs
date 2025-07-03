@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     [Header("Basic Info")]
+    [SerializeField] private string id;
     [SerializeField] private string itemName;
     [SerializeField] [TextArea] private string description;
     [SerializeField] private Sprite itemIcon;
@@ -20,6 +21,16 @@ public class ItemData : ScriptableObject
     
     [Header("Consumable Effects")]
     [SerializeField] private ConsumableEffect consumableEffect;
+    
+    public string ID => id;
+    public string ItemName => itemName;
+    public string Description => description;
+    public Sprite ItemIcon => itemIcon;
+    public ItemType Type => type;
+    public int BuyPrice => buyPrice;
+    public int SellPrice => sellPrice;
+    public bool IsKeyItem => isKeyItem;
+    public EquipmentStats EquipStats => equipStats;
 
     [System.Serializable]
     public struct EquipmentStats

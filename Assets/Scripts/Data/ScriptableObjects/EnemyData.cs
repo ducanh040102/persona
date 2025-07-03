@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     [Header("Basic Info")]
+    [SerializeField] private string enemyID;
     [SerializeField] private string enemyName;
     [SerializeField] [TextArea] private string description;
     [SerializeField] private Sprite enemySprite;
@@ -30,6 +31,7 @@ public class EnemyData : ScriptableObject
     [SerializeField] private bool canBeRecruited;
     [SerializeField] private string[] recruitDialogue;
     
+    public string ID => enemyID;
     public string EnemyName => enemyName;
     public BaseStats Stats => baseStats;
     public PersonaData Persona => persona;

@@ -19,7 +19,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private List<EnemyData> enemies;
     
     [SerializeField] private List<EnemyState> enemiesInBattle;
-    [SerializeField] private List<CharacterState> characterInBattle;
+    [SerializeField] public List<CharacterState> characterInBattle;
 
     public CombatManager Instance { get; private set; }
     

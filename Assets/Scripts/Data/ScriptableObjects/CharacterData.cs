@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     [Header("Basic Info")]
+    [SerializeField] private string characterId;
     [SerializeField] private string characterName;
     [SerializeField] private string characterDescription;
     [SerializeField] private Sprite characterPortrait;
@@ -22,6 +23,7 @@ public class CharacterData : ScriptableObject
     [SerializeField] private GrowthRates growthRates;
     
     // Properties
+    public string Id => characterId;
     public string Name => characterName;
     public BaseStats Stats => baseStats;
     public PersonaData InitialPersona => initialPersona;

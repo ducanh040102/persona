@@ -1,4 +1,4 @@
-// File: Assets/Scripts/Managers/EnemyState.cs
+
 using UnityEngine;
 using System.Linq;
 

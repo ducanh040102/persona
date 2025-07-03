@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
     [Header("Basic Info")]
+    [SerializeField] private string id;
     [SerializeField] private string skillName;
     [SerializeField] [TextArea] private string description;
     [SerializeField] private Sprite skillIcon;
@@ -21,6 +22,12 @@ public class SkillData : ScriptableObject
     [Header("Effects")]
     [SerializeField] private List<StatusEffect> additionalEffects;
     
+    public string Id => id;
+    public string SkillName => skillName;
+    public string Description => description;
+    public Sprite SkillIcon => skillIcon;
+    
+    public int SpCost => spCost;
     public float Power => power;
     
     public ElementType Element => element;

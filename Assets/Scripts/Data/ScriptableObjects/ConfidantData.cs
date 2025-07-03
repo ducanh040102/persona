@@ -5,6 +5,7 @@ using UnityEngine;
 public class ConfidantData : ScriptableObject
 {
     [Header("Basic Info")]
+    [SerializeField] private string confidantId;
     [SerializeField] private string confidantName;
     [SerializeField] private string arcana;
     [SerializeField] private Sprite confidantPortrait;
@@ -15,6 +16,14 @@ public class ConfidantData : ScriptableObject
     
     [Header("Benefits")]
     [SerializeField] private List<RankBenefit> rankBenefits;
+    
+    public string ConfidantId => confidantId;
+    public string ConfidantName => confidantName;
+    public string Arcana => arcana;
+    public Sprite ConfidantPortrait => confidantPortrait;
+    public int CurrentRank => currentRank;
+    public int MaxRank => maxRank;
+    public List<RankBenefit> RankBenefits => rankBenefits;
 
     [System.Serializable]
     public struct RankBenefit
