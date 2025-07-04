@@ -29,6 +29,8 @@ public class CharacterStatusPanel : MonoBehaviour
         // Update the UI elements with character data
         // You'll need to add methods to CharacterState to expose HP/SP values
         nameText.text = character.name;
+        hpText.text = character.GetCurrentHp().ToString();
+        spText.text = character.GetCurrentSp().ToString();
         // Update HP/SP bars and text
     }
 }

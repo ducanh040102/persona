@@ -16,7 +16,7 @@ public class CharacterData : ScriptableObject
     
     [Header("Persona")]
     [SerializeField] private PersonaData initialPersona;
-    [SerializeField] private List<ArcanaType> compatibleArcana; // Now using enum instead of string
+    [SerializeField] private List<ArcanaType> compatibleArcana;
     [SerializeField] private int maxPersonaSlots = 1;
     
     [Header("Growth")]

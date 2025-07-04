@@ -36,12 +36,16 @@ public class EnemyState : MonoBehaviour, ICombatant
 
     public void ModifySP(int amount)
     {
+        float oldSp = currentSp;
         currentSp = Mathf.Clamp(currentSp + amount, 0, currentStats.maxSp);
+        Debug.Log($"[EnemyState] {baseData?.name ?? "Unknown"} SP changed: {oldSp} -> {currentSp} (delta: {amount})");
     }
 
     public void TakeDamage(int amount)
     {
+        float oldHp = currentHp;
         currentHp = Mathf.Max(0, currentHp - amount);
+        Debug.Log($"[EnemyState] {baseData?.name ?? "Unknown"} took {amount} damage: {oldHp} -> {currentHp}");
     }
 
     public bool IsDead => currentHp <= 0;

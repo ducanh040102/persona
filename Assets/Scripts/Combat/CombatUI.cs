@@ -16,6 +16,9 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Transform skillButtonContainer;
     [SerializeField] private GameObject skillButtonPrefab;
     
+    [SerializeField] private Button attackButton;
+    [SerializeField] private Button skillsButton;
+    
     [FormerlySerializedAs("playerController")]
     [Header("References")]
     [SerializeField] private CharacterController characterController;
@@ -23,21 +26,24 @@ public class CombatUI : MonoBehaviour
     
     private List<CharacterStatusPanel> characterPanels = new List<CharacterStatusPanel>();
     
+    [SerializeField] private List<SkillData> testSkill = new List<SkillData>();
+    
     private void Start()
     {
-        InitializeUI();
-        
         characterController.onCharacterSelected.AddListener(ShowActionMenu);
         characterController.onTargetSelected.AddListener(_ => HideAllMenus());
     }
     
-    private void InitializeUI()
+    public void InitializeUI()
     {
         // Create character status panels for each character in battle
         foreach (var character in FindObjectOfType<CombatManager>().characterInBattle)
         {
             CreateCharacterPanel(character);
         }
+        
+        attackButton.onClick.AddListener(OnAttackButton);
+        skillsButton.onClick.AddListener(OnSkillsButton);
     }
     
     private void CreateCharacterPanel(CharacterState character)
@@ -57,8 +63,10 @@ public class CombatUI : MonoBehaviour
     
     public void OnAttackButton()
     {
-        characterController.SelectAttackAction();
-        EnableTargetSelection();
+        characterController.SelectSkill(testSkill[0]);
+        characterController.SelectTarget(combatSystem.GetRandomEnemy());
+        //characterController.SelectAttackAction();
+        //EnableTargetSelection();
     }
     
     public void OnSkillsButton()
@@ -78,7 +86,7 @@ public class CombatUI : MonoBehaviour
         
         // Create new skill buttons
         // Note: You'll need to implement a way to get the character's available skills
-        foreach (var skill in GetCurrentCharacterSkills())
+        foreach (var skill in testSkill)
         {
             var buttonObj = Instantiate(skillButtonPrefab, skillButtonContainer);
             var button = buttonObj.GetComponent<Button>();
@@ -86,10 +94,13 @@ public class CombatUI : MonoBehaviour
             
             text.text = $"{skill.SkillName} ({skill.SpCost} SP)";
             button.onClick.AddListener(() => {
-                characterController.SelectSkill(skill.Id);
-                EnableTargetSelection();
+                characterController.SelectSkill(skill);
+                characterController.SelectTarget(combatSystem.GetRandomEnemy());
+                //EnableTargetSelection();
             });
         }
+        
+        Debug.Log("Populated skill menu");
     }
     
     private void EnableTargetSelection()
@@ -106,11 +117,7 @@ public class CombatUI : MonoBehaviour
     }
     
     // Placeholder method - implement based on your skill system
-    private IEnumerable<SkillData> GetCurrentCharacterSkills()
-    {
-        // Return the currently selected character's available skills
-        yield break;
-    }
+    
 }
 
 // Additional UI component for character status

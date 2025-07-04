@@ -12,6 +12,9 @@ public class CharacterState: MonoBehaviour, ICombatant
     private float currentHp;
     private float currentSp;
     
+    public float GetCurrentHp() => currentHp;
+    public float GetCurrentSp() => currentSp;
+    
     public void Initialize(CharacterData data)
     {
         BaseData = data;
@@ -65,13 +68,17 @@ public class CharacterState: MonoBehaviour, ICombatant
 
     public void ModifySP(int amount)
     {
+        float oldSp = currentSp;
         currentSp = Mathf.Clamp(currentSp + amount, 0, currentStats.maxSp);
+        Debug.Log($"[CharacterState] {BaseData?.name ?? "Unknown"} SP changed: {oldSp} -> {currentSp} (delta: {amount})");
     }
 
     public void TakeDamage(int amount)
     {
+        float oldHp = currentHp;
         currentHp = Mathf.Max(0, currentHp - amount);
+        Debug.Log($"[CharacterState] {BaseData?.name ?? "Unknown"} took {amount} damage: {oldHp} -> {currentHp}");
     }
-
+    
     public bool IsDead => currentHp <= 0;
 }

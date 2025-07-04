@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private CombatSystem combatSystem;
+    [SerializeField] private CombatUI combatUI;
     
     [SerializeField] private GameObject characterPrefab;
     [SerializeField] private GameObject enemyPrefab;
@@ -115,7 +116,9 @@ public class CombatManager : MonoBehaviour
         ClearBattlefield();
         SpawnParty(party);
         SpawnEnemies(enemies);
-        
         combatSystem.StartCombat(characterInBattle, enemiesInBattle);
+        combatUI.InitializeUI();
+        
+        
     }
 }

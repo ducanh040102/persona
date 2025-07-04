@@ -46,12 +46,12 @@ public class CombatSystem : MonoBehaviour
     {
         // if (!CanUseSkill(user, skill))
         //     return;
-        //
-        // float damage = CalculateDamage(user, target, skill);
-        // ApplyDamage(target, damage);
-        //
-        // if (skill.element != ElementType.Physical)
-        //     user.ModifySP(-skill.spCost);
+        
+        float damage = CalculateDamage(user, target, skill);
+        target.TakeDamage(Mathf.CeilToInt(damage));
+        
+        if (skill.Element != ElementType.Physical)
+            user.ModifySP(-skill.SpCost);
 
         CheckBattleStatus();
         AdvanceTurn();
@@ -106,6 +106,15 @@ public class CombatSystem : MonoBehaviour
         // if (victory)
         //     DistributeRewards();
     }
+    
+    public EnemyState GetRandomEnemy()
+    {
+        // var aliveEnemies = enemiesInBattle.Where(e => !e.IsDead).ToList();
+        // if (aliveEnemies.Count == 0)
+        //     return null;
+        int index = Random.Range(0, enemiesInBattle.Count);
+        return enemiesInBattle[index];
+    }
 }
 
 
@@ -114,6 +123,7 @@ public interface ICombatant
     BaseStats GetCurrentStats();
     AffinityType GetElementalAffinity(ElementType element);
     void ModifySP(int amount);
+    void TakeDamage(int amount);
     bool IsDead { get; }
 }
 
