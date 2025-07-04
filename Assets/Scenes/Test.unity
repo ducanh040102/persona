@@ -408,7 +408,7 @@ MonoBehaviour:
   skillButtonContainer: {fileID: 1002739718}
   skillButtonPrefab: {fileID: 1019084549491745684, guid: 9f0972c488e8d634290ac7b7d8d59fec, type: 3}
   attackButton: {fileID: 71808617}
-  skillButton: {fileID: 996847216}
+  skillsButton: {fileID: 996847216}
   characterController: {fileID: 1943251851}
   combatSystem: {fileID: 137336613}
   testSkill:
