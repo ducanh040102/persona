@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f98ca474fbf40aaadb78dcb842fdfce, type: 3}
   m_Name: Eiha
   m_EditorClassIdentifier: 
+  id: 
   skillName: Eiha
   description: Light Curse damage to 1 foe.
   skillIcon: {fileID: 0}
   spCost: 4
-  power: 50
+  power: 5
   type: 0
   element: 6
   targetType: 0

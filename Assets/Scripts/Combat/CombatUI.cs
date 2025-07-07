@@ -28,16 +28,10 @@ public class CombatUI : MonoBehaviour
     
     [SerializeField] private List<SkillData> testSkill = new List<SkillData>();
     
-    private void Start()
-    {
-        characterController.onCharacterSelected.AddListener(ShowActionMenu);
-        characterController.onTargetSelected.AddListener(_ => HideAllMenus());
-    }
-    
     public void InitializeUI()
     {
         // Create character status panels for each character in battle
-        foreach (var character in FindObjectOfType<CombatManager>().characterInBattle)
+        foreach (var character in FindFirstObjectByType<CombatManager>().characterInBattle)
         {
             CreateCharacterPanel(character);
         }
@@ -51,11 +45,11 @@ public class CombatUI : MonoBehaviour
         var panelObj = Instantiate(characterPanelPrefab, characterUIContainer);
         var panel = panelObj.GetComponent<CharacterStatusPanel>();
         panel.Initialize(character);
-        panel.OnPanelClicked += () => characterController.SelectCharacter(character);
+        //panel.OnPanelClicked += () => characterController.SelectCharacter(character);
         characterPanels.Add(panel);
     }
     
-    private void ShowActionMenu(CharacterState character)
+    public void ShowActionMenu(CharacterState character)
     {
         actionMenuPanel.SetActive(true);
         skillMenuPanel.SetActive(false);
@@ -97,6 +91,7 @@ public class CombatUI : MonoBehaviour
                 characterController.SelectSkill(skill);
                 characterController.SelectTarget(combatSystem.GetRandomEnemy());
                 //EnableTargetSelection();
+                HideAllMenus();
             });
         }
         

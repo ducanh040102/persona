@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -52,5 +53,5 @@ public class EnemyState : MonoBehaviour, ICombatant
 
     // Optional: Expose name and skills for UI/AI
     public string GetName() => baseData != null ? baseData.name : "Unknown";
-    public System.Collections.Generic.List<SkillData> GetAvailableSkills() => baseData != null ? baseData.AdditionalSkills : null;
+    public List<SkillData> GetAvailableSkills() => baseData != null ? baseData.AdditionalSkills : null;
 }

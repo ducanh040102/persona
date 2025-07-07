@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<DataManager>();
+                _instance = FindFirstObjectByType<DataManager>();
                 if (_instance == null)
                 {
                     GameObject go = new GameObject("DataManager");

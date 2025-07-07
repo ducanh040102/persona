@@ -22,6 +22,8 @@ public class CharacterState: MonoBehaviour, ICombatant
         currentStats = data.Stats;
         currentHp = currentStats.maxHp;
         currentSp = currentStats.maxSp;
+        
+        Debug.Log($"[CharacterState] Character {BaseData.name} initialized. HP: {currentHp}, SP: {currentSp}");
     }
     
     public bool CanEquipPersona(PersonaData persona)

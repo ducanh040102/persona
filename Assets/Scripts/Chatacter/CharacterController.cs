@@ -6,9 +6,6 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] private CombatSystem combatSystem;
 
-    public UnityEvent<CharacterState> onCharacterSelected;
-    public UnityEvent<ICombatant> onTargetSelected;
-
     private CharacterState selectedCharacter;
     [SerializeField] private SkillData selectedSkill;
     private CombatActionType currentActionType;
@@ -17,7 +14,7 @@ public class CharacterController : MonoBehaviour
     {
         Debug.Log($"[CharacterController] Selecting character: {character?.name ?? "null"}");
         selectedCharacter = character;
-        onCharacterSelected?.Invoke(character);
+        GameEventManager.Instance.TriggerEvent(EventType.CharacterSelected, "character", character);
         Debug.Log($"[CharacterController] Character selected: {character?.name ?? "null"}");
     }
 
@@ -52,8 +49,8 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning("[CharacterController] Cannot select target: No skill selected");
             return;
         }
-
-        onTargetSelected?.Invoke(target);
+        
+        
         ExecuteAction(target);
         Debug.Log($"[CharacterController] Target selected and action executed");
     }
